@@ -12,11 +12,11 @@ function generateId() {
   return +new Date();
 }
 
-function generatebookObject(id, title, penulis, year, isCompleted) {
+function generatebookObject(id, title, author, year, isCompleted) {
   return {
     id,
     title,
-    penulis,
+    author,
     year,
     isCompleted
   }
@@ -85,20 +85,20 @@ function loadDataFromStorage() {
 
 
 function makebook(bookObject) {
-  const {id, title, penulis, year, isCompleted} = bookObject;
+  const {id, title, author, year, isCompleted} = bookObject;
 
   const textTitle = document.createElement('h2');
   textTitle.innerText = `Judul buku : ${title}`;
 
-  const textPenulis = document.createElement('p');
-  textPenulis.innerText = `Penulis buku : ${penulis}`;
+  const textauthor = document.createElement('p');
+  textauthor.innerText = `Penulis buku : ${author}`;
 
   const textyear = document.createElement('p');
   textyear.innerText = `Tahun terbit : ${year}`;
 
   const textContainer = document.createElement('div');
   textContainer.classList.add('inner');
-  textContainer.append(textTitle, textPenulis, textyear);
+  textContainer.append(textTitle, textauthor, textyear);
 
   const container = document.createElement('div');
   container.classList.add('item', 'shadow')
@@ -142,15 +142,15 @@ function makebook(bookObject) {
 
 function addbook() {
   const textbook = document.getElementById('title').value;
-  const penulisbook = document.getElementById('penulis').value;
+  const authorbook = document.getElementById('author').value;
   const year = document.getElementById('number').value;
   const generatedID = generateId();
 
   if (checkbox.checked) {
-    const bookObject = generatebookObject(generatedID, textbook, penulisbook, year, true);
+    const bookObject = generatebookObject(generatedID, textbook, authorbook, year, true);
     books.push(bookObject);
   } else{
-    const bookObject = generatebookObject(generatedID, textbook, penulisbook, year, false);
+    const bookObject = generatebookObject(generatedID, textbook, authorbook, year, false);
     books.push(bookObject);
   }
 
@@ -159,7 +159,7 @@ function addbook() {
 
   // Mengosongkan kolom isian formulir
   document.getElementById('title').value = '';
-  document.getElementById('penulis').value = '';
+  document.getElementById('author').value = '';
   document.getElementById('number').value = '';
 }
 
